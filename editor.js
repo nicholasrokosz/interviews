@@ -22,6 +22,10 @@ class Editor {
   }
 
   delete() {
+    if (this.content.length > 0) {
+      const deletedValue = this.content.pop()
+      this.undoStack.push({ action: 'delete', value: deletedValue })
+    }
   }
 
   undo() {
