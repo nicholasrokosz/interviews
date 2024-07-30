@@ -14,6 +14,11 @@ class Editor {
   }
 
   edit(str) {
+    if (this.content.length > 0) {
+      const oldValue = this.content.pop()
+      this.content.push(str)
+      this.undoStack.push({ action: 'edit', oldValue, newValue: str })
+    }
   }
 
   delete() {
