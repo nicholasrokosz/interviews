@@ -29,6 +29,21 @@ class Editor {
   }
 
   undo() {
+    if (this.undoStack.length > 0) {
+      const lastAction = this.undoStack.pop()
+      switch (lastAction.action) {
+        case 'add':
+          this.content.pop()
+          break
+        case 'edit':
+          this.content.pop()
+          this.content.push(lastAction.oldValue)
+          break
+        case 'delete':
+          this.content.push(lastAction.value)
+          break
+      }
+    }
   }
 }
 
