@@ -5,6 +5,7 @@ class Editor {
   }
 
   dump() {
+    console.log(this.content.join(''))
   }
 
   add(str) {
