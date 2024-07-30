@@ -9,6 +9,8 @@ class Editor {
   }
 
   add(str) {
+    this.content.push(str)
+    this.undoStack.push({ action: 'add', value: str })
   }
 
   edit(str) {
