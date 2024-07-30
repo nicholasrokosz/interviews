@@ -47,3 +47,54 @@ class Editor {
   }
 }
 
+const editor = new Editor()
+
+// tests adding
+editor.add('foo')
+editor.dump() // should see 'foo'
+editor.add('bar')
+editor.dump() // should see 'foobar'
+
+// tests undoing an add
+editor.undo()
+editor.dump() // should see 'foo'
+
+// tests editing
+editor.add('bar')
+editor.edit('baz')
+editor.dump() // should see 'foobaz'
+
+// tests undoing an edit
+editor.undo()
+editor.dump() // should see 'foobar'
+
+// tests deleting
+editor.delete()
+editor.dump() // should see 'foo'
+
+// tests editing after deleting
+editor.edit('bar')
+editor.dump() // should see 'bar'
+
+// tests undoing an edit after deleting
+editor.undo()
+editor.dump() // should see 'foo'
+
+// tests undoing a delete
+editor.delete()
+editor.dump() // should see ''
+editor.undo()
+editor.dump() // should see 'foo'
+
+// the following should be logged in the console:
+// foo
+// foobar
+// foo
+// foobaz
+// foobar
+// foo
+// bar
+// foo
+//
+// foo
+
